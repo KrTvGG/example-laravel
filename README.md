@@ -1,3 +1,82 @@
+# example-laravel
+
+## Шпаргалка
+
+1. `php artisan make:model Post`
+1. Создать модель (пример)
+```php 
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
+{
+    const CREATED_AT = 'creation_date';
+    const UPDATED_AT = 'updated_date';
+
+    /**
+     * Атрибуты, которые можно назначать массово.
+     * @var list<string>
+     */
+    protected $fillable = [
+        'title',
+        'content'
+    ];
+
+    /**
+     * Указывает, должна ли модель иметь временную метку.
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
+     * Формат хранения столбцов даты модели.
+     * @var string
+     */
+    protected $dateFormat = 'd.m.Y';
+}
+```
+1. `php artisan make:migration create_posts_table --create=posts`
+```php
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->unique();
+            $table->text('content');
+            $table->timestamp('creation_date')->nullable();
+            $table->timestamp('updated_date')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('posts');
+    }
+};
+```
+1. `php artisan migrate`
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
