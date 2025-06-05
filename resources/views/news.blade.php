@@ -13,10 +13,21 @@
         <title>Новости</title>
     </head>
     <body>
-        <div class="container mx-auto mt-20 mb-20">
-            <h1 class="text-3xl font-bold underline">Новости</h1>
-            <br>
-            <a href="/"><- Home</a>
+        <div class="container">
+            <div class="news">
+                <h1>Новости</h1>
+                <a href="/"><- Home</a>
+                <div class="news-list">
+                    <? 
+                        $posts = App\Models\Post::all();
+                        foreach ($posts as $key => $post) : ?>
+                            <a href="/" class="news-item">
+                                <div class="news-item__name">{{ $post->title }}</div>
+                                <div class="news-item__content">{{ $post->content }}</div>
+                            </a>
+                    <? endforeach; ?>
+                </div>
+            </div>
         </div>
     </body>
 </html>
