@@ -9,6 +9,6 @@
         <h1>Home</h1>
         <br>
         <br>
-        <a href="/news">Новости</a>
+        <a href="/notes">Заметки</a>
     </body>
 </html>
