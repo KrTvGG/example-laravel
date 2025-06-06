@@ -1,6 +1,6 @@
 <x-lauout>
     <div class="note-container">
-        <a href="{{ route('note.create') }}" class="new-note-btn">New nite</a>
+        <a href="{{ route('note.create') }}" class="new-note-btn">Создать заметку</a>
         <div class="notes">
             @foreach ($notes as $note)
                 <div class="note">
