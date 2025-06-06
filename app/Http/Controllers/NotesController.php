@@ -33,6 +33,7 @@ class NotesController extends Controller
             'note' => ['required', 'string'],
         ]);
 
+        $data['user_id'] = 1;
         $note = Note::create($data);
 
         return to_route('note.show', $note)->with('message', 'Заметка создана');
@@ -59,7 +60,13 @@ class NotesController extends Controller
      */
     public function update(Request $request, Note $note)
     {
-        //
+        $data = $request->validate([
+            'note' => ['required', 'string'],
+        ]);
+
+        $note->update($data);
+
+        return to_route('note.show', $note)->with('message','Заметка обновлена');
     }
 
     /**
@@ -67,6 +74,8 @@ class NotesController extends Controller
      */
     public function destroy(Note $note)
     {
-        //
+        $note->delete();
+
+        return to_route('note.index')->with('message','Заметка удалена');
     }
 }

@@ -10,4 +10,9 @@ class Note extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+
+    protected $fillable = [
+        'note',
+        'user_id'
+    ];
 }

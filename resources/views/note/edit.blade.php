@@ -1,7 +1,9 @@
 <x-lauout>
     <div class="note-container single-note">
         <h1>Редактирование заметки</h1>
-        <form action="{{ route('note.edit', $note) }}" method="POST" class="note">
+        <form action="{{ route('note.update', $note) }}" method="POST" class="note">
+            @csrf
+            @method('PUT')
             <textarea name="note" rows="10" class="note-body" placeholder="Введите свою заметку здесь">
                 {{ $note->note }}
             </textarea>

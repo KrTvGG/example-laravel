@@ -9,6 +9,11 @@
 </head>
 <body>
     <div class="container">
+        @session('message')
+            <div class="success-message">
+                {{ session('message') }}
+            </div>
+        @endsession
         {{ $slot }}
     </div>
 </body>
