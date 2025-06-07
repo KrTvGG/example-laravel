@@ -1,0 +1,78 @@
+@use "functions" as *;
+
+// Работает на ПК как обычный hover, а на мобилке как active и анимация не зависает, как будто она в hover
+@mixin hover {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent; // убирает стандартное подсвечивание элемента при касании на устройствах iOS
+    touch-action: manipulation; // позволяет браузеру оптимизировать обработку событий касания, например, предотвращая двойной тап для зума
+
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
+    }
+
+    @media (hover: none),
+    (hover: on-demand) {
+
+        // применяются на устройствах, не поддерживающих наведение или поддерживающих его по запросу, что характерно для тачскринов
+        &:active {
+            @content;
+        }
+    }
+}
+
+$laptop: 1280;
+$tablet: 1024;
+$mobile: 768;
+
+@mixin laptop {
+    @media (width <= #{$laptop}px) {
+        @content;
+    }
+}
+
+@mixin laptop-above {
+    @media (width > #{$laptop}px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (width <= #{$tablet}px) {
+        @content;
+    }
+}
+
+@mixin tablet-above {
+    @media (width > #{$tablet}px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (width <= #{$mobile}px) {
+        @content;
+    }
+}
+
+@mixin mobile-above {
+    @media (width > #{$mobile}px) {
+        @content;
+    }
+}
+
+@mixin hover {
+    @media (hover: hover) {
+        &:hover {
+            @content;
+        }
+    }
+
+    @media (hover: none),
+        (hover: on-demand) {
+        &:active {
+            @content;
+        }
+    }
+}
