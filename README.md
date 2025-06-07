@@ -14,3 +14,6 @@
 1. Запустить сервер `vite` - `npm run dev`
 1. Запустить docker контейнер с `postgres_db` - `docker compose up -d`
 1. Запускаем `Laravel` - `composer run dev`
+1. Публикация ресурсов связи с пакетом `Swagger` - `php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"`
+1. Генерируем `Swagger API` - `php artisan l5-swagger:generate`
+1. Просмотреть `Notes Doc API` можно по [пути](/api/documentation) 
