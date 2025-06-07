@@ -15,4 +15,6 @@ class Note extends Model
         'note',
         'user_id'
     ];
+
+    protected $quarded = false;
 }
