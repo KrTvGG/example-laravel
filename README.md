@@ -16,4 +16,4 @@
 1. Запускаем `Laravel` - `composer run dev`
 1. Публикация ресурсов связи с пакетом `Swagger` - `php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"`
 1. Генерируем `Swagger API` - `php artisan l5-swagger:generate`
-1. Просмотреть `Notes Doc API` можно по [пути](/api/documentation) 
+1. Просмотреть `Notes Doc API` можно по [пути](http://localhost:8000/api/documentation) 
