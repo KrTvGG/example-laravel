@@ -31,7 +31,11 @@ RUN apk add --no-cache \
     nodejs \
     npm
 
-RUN mkdir -p /app
+RUN adduser --shell /bin/sh --disabled-password -H --home /home/laravel laravel && \
+    mkdir -p /app && \
+    mkdir -p /home/laravel && \
+    chown -R laravel:laravel /app && \
+    chown -R laravel:laravel /home/laravel
 
 WORKDIR /app
 
