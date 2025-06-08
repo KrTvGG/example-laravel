@@ -5,13 +5,25 @@ services:
     image: postgres:latest
     container_name: postgres_db
     environment:
-      POSTGRES_DB: test_laravel         # Имя базы данных, которую нужно создать
-      POSTGRES_USER: krtv           # Имя пользователя для доступа к базе данных
-      POSTGRES_PASSWORD: 6552    # Пароль для пользователя
+      POSTGRES_DB: test_laravel
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test123
     ports:
-      - "5432:5432"                    # Проброс порта
+      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Хранение данных
+      - postgres_data:/var/lib/postgresql/data
+
+  laravel:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+      - 3000:3000
+    volumes:
+      - ./:/app
 
 volumes:
   postgres_data:
