@@ -19,6 +19,7 @@ services:
       dockerfile: ./Dockerfile
     depends_on:
       - db
+    user: ${UID:-1000}:${GID:-1000}
     ports:
       - 8000:8000
       - 3000:3000
