@@ -6,46 +6,47 @@
     },
     "paths": {
         "/api/": {},
-        "/note/": {
+        "/api/note": {
             "get": {
                 "tags": [
-                    "Notes"
+                    "Note"
                 ],
-                "summary": "Список",
-                "operationId": "1c766328215231aca4fb72c1fc4d7ecb",
-                "parameters": [
-                    {
-                        "name": "created_at",
-                        "in": "query",
-                        "description": "Фильтр по дате создания записки",
-                        "required": false,
-                        "schema": {
-                            "type": "string",
-                            "format": "date-time",
-                            "example": "2025-06-07T00:00:00Z"
-                        }
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "Количество записок на странице",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "example": 6
-                        }
-                    }
-                ],
+                "summary": "Список заметок",
+                "operationId": "e40a7649ddbb4b7793d811f66654b208",
                 "responses": {
                     "200": {
-                        "description": "OK, возвращает HTML-страницу с записями",
+                        "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "html": {
-                                            "type": "string",
-                                            "example": "<html>...</html>"
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "note": {
+                                                        "type": "string",
+                                                        "example": "Text note"
+                                                    },
+                                                    "user_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "date-time",
+                                                        "example": "2025-06-08T17:49:40.000000Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "date-time",
+                                                        "example": "2025-06-08T17:49:40.000000Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
                                         }
                                     },
                                     "type": "object"
@@ -57,10 +58,10 @@
             },
             "post": {
                 "tags": [
-                    "Notes"
+                    "Note"
                 ],
-                "summary": "Создание",
-                "operationId": "408303f15d070ebb82bc2df7a8795ef8",
+                "summary": "Создание заметки",
+                "operationId": "b1e3e4150cfb077a304f6249f525bb7a",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -91,17 +92,199 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "id": {
-                                            "type": "integer",
-                                            "example": 1
-                                        },
-                                        "note": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "note": {
+                                                    "type": "string",
+                                                    "example": "Text note"
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "updated_at": {
+                                                    "type": "date-time",
+                                                    "example": "2025-06-08T17:49:40.000000Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "date-time",
+                                                    "example": "2025-06-08T17:49:40.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/note/{note}": {
+            "get": {
+                "tags": [
+                    "Note"
+                ],
+                "summary": "Единичная заметка",
+                "operationId": "c0998a22445e00e4f2ccb944fafd239e",
+                "parameters": [
+                    {
+                        "name": "note",
+                        "in": "path",
+                        "description": "ID заметки",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "note": {
+                                                    "type": "string",
+                                                    "example": "Text note"
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "updated_at": {
+                                                    "type": "date-time",
+                                                    "example": "2025-06-08T17:49:40.000000Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "date-time",
+                                                    "example": "2025-06-08T17:49:40.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Note"
+                ],
+                "summary": "Удаление заметки",
+                "operationId": "54c3c86f3839aeed6d03ef3231afccb2",
+                "parameters": [
+                    {
+                        "name": "note",
+                        "in": "path",
+                        "description": "ID заметки",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
                                             "type": "string",
-                                            "example": "Text note"
+                                            "example": "done"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Note"
+                ],
+                "summary": "Обновление заметки",
+                "operationId": "cd3c6152f12d8dd9d0ed29cfd2611b68",
+                "parameters": [
+                    {
+                        "name": "note",
+                        "in": "path",
+                        "description": "ID заметки",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "note": {
+                                                "type": "string",
+                                                "example": "Text note for update"
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            }
                                         },
-                                        "user_id": {
-                                            "type": "integer",
-                                            "example": 1
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "note": {
+                                                    "type": "string",
+                                                    "example": "Text note for update"
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "updated_at": {
+                                                    "type": "date-time",
+                                                    "example": "2025-06-08T17:49:40.000000Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "date-time",
+                                                    "example": "2025-06-08T17:49:40.000000Z"
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"
@@ -115,8 +298,8 @@
     },
     "tags": [
         {
-            "name": "Notes",
-            "description": "Notes"
+            "name": "Note",
+            "description": "Note"
         }
     ]
 }
