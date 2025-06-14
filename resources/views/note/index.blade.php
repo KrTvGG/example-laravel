@@ -1,9 +1,9 @@
 <x-lauout>
     <div class="note-container">
         <a href="{{ route('note.create') }}" class="new-note-btn">Создать заметку</a>
-        <div class="notes">
+        <div class="notes grid text-center">
             @foreach ($notes as $note)
-                <div class="note">
+                <div class="note g-col-4">
                     <div class="note-body">
                         {{ Str::words($note->note, 30) }}
                     </div>
