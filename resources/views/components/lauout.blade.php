@@ -8,9 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container my-5">
         @session('message')
-            <div class="success-message">
+            <div class="success-message alert alert-success">
                 {{ session('message') }}
             </div>
         @endsession
