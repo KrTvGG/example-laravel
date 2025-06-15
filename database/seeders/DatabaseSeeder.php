@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comments;
 use App\Models\Note;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,14 +16,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-
-        User::factory()->create([
-            'id' => 1,
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => bcrypt('pass123'),
-        ]);
+        User::firstOrCreate(
+            [
+                'id' => 1,
+            ],
+            [
+                'email' => 'test@example.com',
+                'name' => 'Test User',
+                'password' => bcrypt('pass123'),
+            ]
+        );
 
         Note::factory(20)->create();
+
+        Comments::factory(2)->create();
     }
 }
