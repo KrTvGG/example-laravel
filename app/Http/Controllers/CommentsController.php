@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comments;
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -28,7 +29,15 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'comment' => ['required', 'string'],
+            'note_id' => ['required', 'integer'],
+        ]);
+
+        Comments::create($data);
+
+        $note = Note::find($request->note_id);
+        return to_route('note.show', $note)->with('message', 'Комментарий создан');
     }
 
     /**
@@ -50,16 +59,28 @@ class CommentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comments $comments)
+    public function update(Request $request, Comments $comment)
     {
-        //
+        $data = $request->validate([
+            'comment' => ['required', 'string'],
+        ]);
+
+        $comment->update($data);
+
+        $note = Note::find($comment->note_id);
+
+        return to_route('note.show', $note)->with('message','Комментарий обновлена');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Comments $comments)
+    public function destroy(Comments $comment)
     {
-        //
+        $note = Note::find($comment->note_id);
+
+        $comment->delete();
+
+        return to_route('note.show', $note)->with('message', 'Комментарий удален');
     }
 }

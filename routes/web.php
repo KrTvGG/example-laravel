@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\NotesApiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
@@ -18,3 +19,5 @@ Route::get('/', function () {
 // Route::delete('/note/{id}', [NotesController::class, 'destroy'])->name('note.destroy');
 
 Route::resource('note',NotesController::class);
+
+Route::resource('comments',CommentsController::class);
