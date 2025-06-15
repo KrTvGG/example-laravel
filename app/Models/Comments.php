@@ -6,19 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
-class Note extends Model
+class Comments extends Model
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    protected $fillable = [
-        'note',
-        'user_id'
-    ];
-
-    protected $guarded = false;
-
-    public function comments() {
-        return $this->hasMany(Comments::class, 'note_id');
-    }
+    protected $guarded = [];
 }

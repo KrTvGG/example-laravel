@@ -50,6 +50,7 @@ class NotesController extends Controller
      */
     public function show(Note $note)
     {
+        $note = Note::with('comments')->find($note->id);
         return view('note.show', ['note' => $note]);
     }
 
