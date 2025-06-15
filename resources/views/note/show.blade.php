@@ -17,5 +17,8 @@
                 {{ $note->note }}
             </div>
         </div>
+        <div class="comments">
+            <h2>Комментарии</h2>
+        </div>
     </div>
 </x-lauout>

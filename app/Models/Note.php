@@ -16,5 +16,9 @@ class Note extends Model
         'user_id'
     ];
 
-    protected $quarded = false;
+    protected $guarded = false;
+
+    public function comments() {
+        return $this->hasMany(Comments::class, 'note_id');
+    }
 }
